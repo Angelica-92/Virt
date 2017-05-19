@@ -29,9 +29,9 @@ $app->get('/', function () use ($app) {
  * The /insult endpoint.
  */
 $app->get('/insult', function () use ($app, $utils) {
-	$insult = $utils->get_insult($utils->get_name(date('Y'), date('m'), date('d')));
+	$insult = $utils->getInsult($utils->getName(date('Y'), date('m'), date('d')));
 	$accept = $app->request->headers->get('ACCEPT');
-	
+
 	if ($accept == 'application/json') {
 		$app->response->headers->set('Content-Type', 'application/json');
 		$app->response->setBody(json_encode($insult));
@@ -49,9 +49,9 @@ $app->get('/insult', function () use ($app, $utils) {
 $app->get('/insult/:year/:month/:day',
 		function ($year, $month, $day) use ($app, $utils) {
 	$title = $year . '-' . $month . '-' . $day . "'s insult";
-	$insult = $utils->get_insult($utils->get_name($year, $month, $day));
+	$insult = $utils->getInsult($utils->getName($year, $month, $day));
 	$accept = $app->request->headers->get('ACCEPT');
-	
+
 	if ($accept == 'application/json') {
 		$app->response->headers->set('Content-Type', 'application/json');
 		$app->response->setBody(json_encode($insult));
@@ -65,9 +65,9 @@ $app->get('/insult/:year/:month/:day',
  * The /insult/name endpoint.
  */
 $app->get('/insult/:name', function () use ($app, $utils) {
-	$insult = $utils->get_insult($name);
+	$insult = $utils->getInsult($name);
 	$accept = $app->request->headers->get('ACCEPT');
-	
+
 	if ($accept == 'application/json') {
 		$app->response->headers->set('Content-Type', 'application/json');
 		$app->response->setBody(json_encode($insult));
@@ -86,10 +86,9 @@ $app->error(function(Exception $e) use ($app) {
 			'status' => 500,
 			'stack' => $e->getMessage()
 	);
-	
+
 	$app->render('error.tpl', $error, 500);
 });
 
 // This starts the application
 $app->run();
-
