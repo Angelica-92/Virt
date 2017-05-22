@@ -2,7 +2,7 @@ os:
 - linux
 addons:
   ssh_known_hosts:
-  - insultr.westeurope.cloudapp.azure.com
+  - Virt961327.westeurope.cloudapp.azure.com
 cache:
   directories:
   - "$HOME/.composer/cache"
@@ -16,9 +16,9 @@ deploy:
 - provider: script
   skip-cleanup: true
   script:
-  - rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR $DEPLOY_USER@$DEPLOY_HOST:/home/johan
+  - rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR $DEPLOY_USER@$DEPLOY_HOST:/home/M11k7007
   on:
     branch: master
 notifications:
   email:
-    recipients: din.egen.epostadress@domän.se
+    recipients: Angelica_92-@hotmail.com

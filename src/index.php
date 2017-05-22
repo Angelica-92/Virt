@@ -90,5 +90,5 @@ $app->error(function(Exception $e) use ($app) {
 	$app->render('error.tpl', $error, 500);
 });
 
-// This starts the application
+// To starts the application
 $app->run();
